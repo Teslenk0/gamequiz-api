@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.DataTransferObjects
 {
-    class JugandoDTO
+    public class JugandoDTO
     {
         public int Id { get; set; }
 

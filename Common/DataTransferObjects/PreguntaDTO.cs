@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.DataTransferObjects
 {
-    class PreguntaDTO
+    public class PreguntaDTO
     {
         public PreguntaDTO()
         {

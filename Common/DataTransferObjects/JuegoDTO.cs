@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.DataTransferObjects
 {
-    class JuegoDTO
+    public class JuegoDTO
     {
         public JuegoDTO()
         {

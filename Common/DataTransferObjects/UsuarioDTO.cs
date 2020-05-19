@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Common.DataTransferObjects
 {
-    class UsuarioDTO
+    public class UsuarioDTO
     {
         public UsuarioDTO()
         {
-            this.Juegos = new HashSet<JuegoDTo>();
+            this.Juegos = new HashSet<JuegoDTO>();
             this.Puntajes = new HashSet<PuntajeDTO>();
         }
 
