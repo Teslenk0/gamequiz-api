@@ -57,6 +57,59 @@ namespace BusinessLogic.Controllers
             }
         }
 
+        public UsuarioDTO GetByUsername(string username)
+        {
+            using (ModelosDBContainer context = new ModelosDBContainer())
+            {
+                UsuarioRepository repositorio = new UsuarioRepository(context);
+                var entity = repositorio.Get(username);
+
+                return this._mapper.Map<UsuarioDTO>(entity);
+            }
+        }
+
+        public Object Login(string usuario, string contraseña)
+        {
+            try
+            {
+                using (ModelosDBContainer context = new ModelosDBContainer())
+                {
+                    UsuarioRepository repositorio = new UsuarioRepository(context);
+
+                    if (repositorio.Any(usuario))
+                    {
+                        throw new Exception("El usuario no existe.");
+                    }
+
+                    var entity = repositorio.Get(usuario);
+
+                    if (repositorio.VerifyPassword(contraseña, entity.Password))
+                    {
+                        throw new Exception("Credenciales incorrectas");
+                    }
+
+                    var user = this._mapper.Map<UsuarioDTO>(entity);
+                    var token = "nadsjknp'klmdasjkln;dasjn;klasd";
+                    //var token = this.GenerateTokenJwt(user.Username);
+
+
+                    return new { 
+                        user,
+                        token
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+
+            }
+        }
+
+
+
+
+        
         public HashSet<UsuarioDTO> GetAll()
         {
             HashSet<UsuarioDTO> usuarios = new HashSet<UsuarioDTO>();
@@ -94,6 +147,8 @@ namespace BusinessLogic.Controllers
                 throw ex;
             }
         }
+
+
 
         public void Delete(int Id)
         {

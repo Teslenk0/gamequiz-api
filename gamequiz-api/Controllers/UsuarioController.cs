@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 
 using Common.DataTransferObjects;
+using Common.Requests;
 using BusinessLogic.Controllers;
 using AutoMapper;
 
@@ -16,35 +17,39 @@ namespace gamequiz_api.Controllers
 {
     public class UsuarioController : ApiController
     {
-
-        // GET: api/Usuario
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Usuario/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Usuario
+        [HttpPost]
+        [Route("api/registrar")]
         public Object Post(UsuarioDTO usuario)
         {
             BusinessLogic.Controllers.UsuarioController userController = new BusinessLogic.Controllers.UsuarioController();
-            userController.Create(usuario);
-            return new ResponseDTO(usuario, "Se ah creado el usuario correctamente.", true);
+            try
+            {
+                userController.Create(usuario);
+                return new ResponseDTO(usuario, "Se ah creado el usuario correctamente.", true);
+            }
+            catch (Exception e)
+            {
+                return new ResponseDTO(null, e.Message, false);
+            }
         }
 
-        // PUT: api/Usuario/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPost]
+        [Route("api/acceder")]
+        public Object Login(LoginRequest req)
         {
+            BusinessLogic.Controllers.UsuarioController userController = new BusinessLogic.Controllers.UsuarioController();
+            try
+            {
+                var result = userController.Login(req.username, req.password);
+                return new ResponseDTO(result, "Se ah creado el usuario correctamente.", true);
+            }
+            catch (Exception e)
+            {
+                return new ResponseDTO(null, e.Message, false);
+
+            }
         }
 
-        // DELETE: api/Usuario/5
-        public void Delete(int id)
-        {
-        }
+
     }
 }

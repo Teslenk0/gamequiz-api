@@ -25,6 +25,12 @@ namespace BusinessLogic.DataModel.Repositories
             return UsuarioEntity;
         }
 
+        public Usuario Get(string username)
+        {
+            var UsuarioEntity = this._context.UsuarioSet.Where(a => a.Username == username).FirstOrDefault();
+            return UsuarioEntity;
+        }
+
 
         public HashSet<Usuario> GetAll()
         {
@@ -47,7 +53,13 @@ namespace BusinessLogic.DataModel.Repositories
 
         public void Create(Usuario usuario)
         {
+            string hash = BCrypt.Net.BCrypt.HashPassword(usuario.Password, workFactor: 10);
             this._context.UsuarioSet.Add(usuario);
+        }
+
+        public bool VerifyPassword(string password_sent, string hash)
+        {
+            return BCrypt.Net.BCrypt.Verify(password_sent, hash);
         }
 
         public void Delete(int Id)
@@ -55,38 +67,5 @@ namespace BusinessLogic.DataModel.Repositories
             var entity = this.Get(Id);
             this._context.UsuarioSet.Remove(entity);
         }
-
-        /*public Usuario Update(int Id, Usuario usuario)
-        {
-            var entity = this.Get(Id);
-
-            if(usuario.Nombre != entity.Nombre)
-            {
-                entity.Nombre = usuario.Nombre;
-            }
-
-            if (usuario.Apellido != entity.Apellido)
-            {
-                entity.Apellido = usuario.Apellido;
-            }
-
-            if (usuario. != entity.Nombre)
-            {
-                entity.Nombre = usuario.Nombre;
-            }
-
-            if (usuario.Nombre != entity.Nombre)
-            {
-                entity.Nombre = usuario.Nombre;
-            }
-
-            if (usuario.Nombre != entity.Nombre)
-            {
-                entity.Nombre = usuario.Nombre;
-            }
-
-        }*/
-
-
     }
 }

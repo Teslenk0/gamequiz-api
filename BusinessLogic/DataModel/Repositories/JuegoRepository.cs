@@ -57,38 +57,5 @@ namespace BusinessLogic.DataModel.Repositories
             var entity = this.Get(Id);
             this._context.JuegoSet.Remove(entity);
         }
-
-        /*public Juego Update(int Id, Juego Juego)
-        {
-            var entity = this.Get(Id);
-
-            if(Juego.Nombre != entity.Nombre)
-            {
-                entity.Nombre = Juego.Nombre;
-            }
-
-            if (Juego.Apellido != entity.Apellido)
-            {
-                entity.Apellido = Juego.Apellido;
-            }
-
-            if (Juego. != entity.Nombre)
-            {
-                entity.Nombre = Juego.Nombre;
-            }
-
-            if (Juego.Nombre != entity.Nombre)
-            {
-                entity.Nombre = Juego.Nombre;
-            }
-
-            if (Juego.Nombre != entity.Nombre)
-            {
-                entity.Nombre = Juego.Nombre;
-            }
-
-        }*/
-
-
     }
 }
