@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\JuegoController.cs" />
+    <Compile Include="Controllers\JugandoController.cs" />
     <Compile Include="Controllers\PreguntaController.cs" />
     <Compile Include="Controllers\PuntajeController.cs" />
     <Compile Include="Controllers\Respuesta.Controller.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DataModel\Repositories\JuegoRepository.cs" />
+    <Compile Include="DataModel\Repositories\JugandoRepository.cs" />
     <Compile Include="DataModel\Repositories\PreguntaRepository.cs" />
     <Compile Include="DataModel\Repositories\PuntajeRepository.cs" />
     <Compile Include="DataModel\Repositories\RespuestaRepository.cs" />

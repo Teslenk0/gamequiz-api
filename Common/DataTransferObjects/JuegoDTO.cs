@@ -25,7 +25,8 @@ namespace Common.DataTransferObjects
         public string Musica { get; set; }
         public string Uuid { get; set; }
         public string Password { get; set; }
-      
+
+        public System.DateTime Creado { get; set; }
 
         public UsuarioDTO Usuario { get; set; }
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }

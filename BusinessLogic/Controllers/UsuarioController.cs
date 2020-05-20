@@ -37,6 +37,7 @@ namespace BusinessLogic.Controllers
 
                 cfg.CreateMap<PuntajeDTO, Puntaje>();
                 cfg.CreateMap<Puntaje, PuntajeDTO>();
+
             });
             // only during development, validate your mappings; remove it before release
             configuration.AssertConfigurationIsValid();
