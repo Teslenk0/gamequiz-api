@@ -15,9 +15,32 @@ namespace BusinessLogic.Controllers
 	{
         private readonly IMapper _mapper;
 
-        public PreguntaController(IMapper mapper)
+        public PreguntaController()
         {
-            _mapper = mapper;
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<UsuarioDTO, Usuario>();
+                cfg.CreateMap<Usuario, UsuarioDTO>();
+
+                cfg.CreateMap<JuegoDTO, Juego>();
+                cfg.CreateMap<Juego, JuegoDTO>();
+
+                cfg.CreateMap<JugandoDTO, Jugando>();
+                cfg.CreateMap<Jugando, JugandoDTO>();
+
+                cfg.CreateMap<PreguntaDTO, Pregunta>();
+                cfg.CreateMap<Pregunta, PreguntaDTO>();
+
+                cfg.CreateMap<RespuestaDTO, Respuesta>();
+                cfg.CreateMap<Respuesta, RespuestaDTO>();
+
+                cfg.CreateMap<PuntajeDTO, Puntaje>();
+                cfg.CreateMap<Puntaje, PuntajeDTO>();
+            });
+            // only during development, validate your mappings; remove it before release
+            configuration.AssertConfigurationIsValid();
+            // use DI (http://docs.automapper.org/en/latest/Dependency-injection.html) or create the mapper yourself
+            _mapper = configuration.CreateMapper();
         }
 
         public PreguntaDTO GetById(int Id)
