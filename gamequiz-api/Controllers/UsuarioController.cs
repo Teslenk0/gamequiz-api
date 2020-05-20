@@ -34,11 +34,7 @@ namespace gamequiz_api.Controllers
         {
             BusinessLogic.Controllers.UsuarioController userController = new BusinessLogic.Controllers.UsuarioController();
             userController.Create(usuario);
-            return new
-            {
-                Success = true,
-                Message = "Se ha creado el usuario correctamente."
-            };
+            return new ResponseDTO(usuario, "Se ah creado el usuario correctamente.", true);
         }
 
         // PUT: api/Usuario/5

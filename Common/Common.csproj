@@ -45,6 +45,7 @@
     <Compile Include="DataTransferObjects\JugandoDTO.cs" />
     <Compile Include="DataTransferObjects\PreguntaDTO.cs" />
     <Compile Include="DataTransferObjects\PuntajeDTO.cs" />
+    <Compile Include="DataTransferObjects\ResponseDTO.cs" />
     <Compile Include="DataTransferObjects\RespuestaDTO.cs" />
     <Compile Include="DataTransferObjects\UsuarioDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
