@@ -32,8 +32,6 @@ namespace gamequiz_api.Controllers
         // POST: api/Usuario
         public Object Post(UsuarioDTO usuario)
         {
-
-
             BusinessLogic.Controllers.UsuarioController userController = new BusinessLogic.Controllers.UsuarioController();
             userController.Create(usuario);
             return new

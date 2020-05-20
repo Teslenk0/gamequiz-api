@@ -171,7 +171,6 @@
     <Compile Include="Controllers\PuntajeController.cs" />
     <Compile Include="Controllers\RespuestaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,10 +268,6 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{8451e792-e97d-449b-a378-423d987916d8}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
-      <Project>{b947f56e-e1b8-40fb-87e0-e2cff44545b8}</Project>
-      <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

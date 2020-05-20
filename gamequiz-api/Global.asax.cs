@@ -8,8 +8,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-using Common.DataTransferObjects;
-using Persistencia.Database;
 
 namespace gamequiz_api
 {

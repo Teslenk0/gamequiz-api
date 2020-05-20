@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/20/2020 16:22:06
+-- Date Created: 05/20/2020 17:27:04
 -- Generated from EDMX file: C:\Users\tesla\source\repos\gamequiz-api\Persistencia\Database\ModelosDB.edmx
 -- --------------------------------------------------
 
@@ -89,7 +89,8 @@ CREATE TABLE [dbo].[JuegoSet] (
     [Musica] nvarchar(max)  NOT NULL,
     [Uuid] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
-    [UsuarioId] int  NOT NULL
+    [UsuarioId] int  NOT NULL,
+    [Creado] datetime  NOT NULL
 );
 GO
 
