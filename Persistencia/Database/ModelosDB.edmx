@@ -67,7 +67,7 @@
     <Property Name="Uuid" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UsuarioId" Type="int" Nullable="false" />
-    <Property Name="Creado" Type="datetime" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Creado" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PuntajeSet">
     <Key>
@@ -266,7 +266,7 @@
           <NavigationProperty Name="Puntajes" Relationship="ModelosDB.JuegoPuntaje" FromRole="Juego" ToRole="Puntaje" />
           <NavigationProperty Name="Preguntas" Relationship="ModelosDB.JuegoPregunta" FromRole="Juego" ToRole="Pregunta" />
           <NavigationProperty Name="Jugando" Relationship="ModelosDB.JuegoJugando" FromRole="Juego" ToRole="Jugando" />
-          <Property Name="Creado" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Creado" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
         </EntityType>
         <EntityType Name="Puntaje">
           <Key>

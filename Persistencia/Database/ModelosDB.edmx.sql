@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/20/2020 17:27:04
--- Generated from EDMX file: C:\Users\tesla\source\repos\gamequiz-api\Persistencia\Database\ModelosDB.edmx
+-- Date Created: 05/20/2020 19:21:09
+-- Generated from EDMX file: C:\Users\Gabriel\Desktop\Programacion\RIA y .NET\gamequiz-api\Persistencia\Database\ModelosDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -90,7 +90,7 @@ CREATE TABLE [dbo].[JuegoSet] (
     [Uuid] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
     [UsuarioId] int  NOT NULL,
-    [Creado] datetime  NOT NULL
+    [Creado] nvarchar(max)  NOT NULL
 );
 GO
 

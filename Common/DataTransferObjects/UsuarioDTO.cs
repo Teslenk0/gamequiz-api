@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +23,8 @@ namespace Common.DataTransferObjects
         public string Apellido { get; set; }
         public System.DateTime FechaNac { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<JuegoDTO> Juegos { get; set; }
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }
         public virtual JugandoDTO Jugando { get; set; }

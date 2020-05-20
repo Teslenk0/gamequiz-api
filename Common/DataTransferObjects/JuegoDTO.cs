@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,11 +28,22 @@ namespace Common.DataTransferObjects
         public string Uuid { get; set; }
         public string Password { get; set; }
 
-        public System.DateTime Creado { get; set; }
+        public int UsuarioId { get; set; }
+
+        public string Creado { get; set; }
 
         public UsuarioDTO Usuario { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<PreguntaDTO> Preguntas { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<JugandoDTO> Jugando { get; set; }
     }
 }

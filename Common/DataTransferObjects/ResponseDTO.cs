@@ -16,7 +16,7 @@ namespace Common.DataTransferObjects
         {
             this.data = data;
             this.success = success;
-            this.data = data;
+            this.message = message;
         }
     }
 }
