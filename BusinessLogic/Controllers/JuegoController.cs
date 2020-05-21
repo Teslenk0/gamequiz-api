@@ -45,12 +45,37 @@ namespace BusinessLogic.Controllers
 
         public JuegoDTO GetById(int Id)
         {
+
             using (ModelosDBContainer context = new ModelosDBContainer())
             {
                 JuegoRepository repositorio = new JuegoRepository(context);
+                if (!repositorio.Any(Id))
+                {
+                    throw new Exception("Juego no existente.");
+                }
                 var entity = repositorio.Get(Id);
                 return this._mapper.Map<JuegoDTO>(entity);
             }
+
+        }
+
+        public bool CambiarEstado(int id)
+        {
+            using (ModelosDBContainer context = new ModelosDBContainer())
+            {
+                JuegoRepository repositorio = new JuegoRepository(context);
+
+                if (!repositorio.Any(id))
+                {
+                    throw new Exception("Juego no existente.");
+                }
+
+                var juego = repositorio.Get(id);
+
+                juego.Activo = !juego.Activo;
+                context.SaveChanges();
+            }
+            return false;
         }
 
         public HashSet<JuegoDTO> GetAll()
@@ -70,15 +95,23 @@ namespace BusinessLogic.Controllers
             return Juegos;
         }
 
-        public void Create(JuegoDTO juego)
+        public Object Create(JuegoDTO juego)
         {
             try
             {
                 using (ModelosDBContainer context = new ModelosDBContainer())
                 {
                     JuegoRepository repositorio = new JuegoRepository(context);
+
                     repositorio.Create(this._mapper.Map<Juego>(juego));
                     context.SaveChanges();
+
+
+                    /**
+                     * https://stackoverflow.com/questions/5212751/how-can-i-get-id-of-inserted-entity-in-entity-framework
+                     */
+
+                    return this._mapper.Map<JuegoDTO>(repositorio.Get(juego.Id));
                 }
             }
             catch (Exception ex)
