@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace gamequiz_api
 {
@@ -10,6 +11,14 @@ namespace gamequiz_api
     {
         public static void Register(HttpConfiguration config)
         {
+            /**
+             * First parameter: URL,
+             * Second parameter: header
+             * Third paramenter: methods
+             * **/
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+
             // Configuración y servicios de API web
             config.MapHttpAttributeRoutes();
             config.MessageHandlers.Add(new JwtHandler());

@@ -349,6 +349,6 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-Persitencia/App.Config
-BusinessLogin/App.Config
-gamequiz-api/Web.Config
+#Persitencia/App.Config
+#BusinessLogin/App.Config
+#gamequiz-api/Web.Config

@@ -86,5 +86,26 @@ namespace BusinessLogic.Controllers
                 throw ex;
             }
         }
+
+        public void SetImage(int id, string url)
+        {
+            try
+            {
+                using (ModelosDBContainer context = new ModelosDBContainer())
+                {
+                    PreguntaRepository repositorio = new PreguntaRepository(context);
+
+                    var pregunta = repositorio.Get(id);
+
+                    pregunta.Imagen = url;
+
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

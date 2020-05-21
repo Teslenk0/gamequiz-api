@@ -120,6 +120,32 @@ namespace BusinessLogic.Controllers
             }
         }
 
+        public void SetImage(int id, string url)
+        {
+            try
+            {
+                using (ModelosDBContainer context = new ModelosDBContainer())
+                {
+                    JuegoRepository repositorio = new JuegoRepository(context);
+
+                    if (!repositorio.Any(id))
+                    {
+                        throw new Exception("Juego no existente.");
+                    }
+
+                    var juego = repositorio.Get(id);
+
+                    juego.Caratula = url;
+
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Delete(int Id)
         {
             try

@@ -3,6 +3,7 @@ using System.Net;
 using System.Web.Http;
 using Common.DataTransferObjects;
 using Common.Requests;
+using System.Web.Http.Cors;
 
 namespace gamequiz_api.Controllers
 {
