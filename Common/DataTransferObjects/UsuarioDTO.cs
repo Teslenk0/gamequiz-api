@@ -29,6 +29,9 @@ namespace Common.DataTransferObjects
         [JsonIgnore]
         [IgnoreDataMember]
         public virtual ICollection<JuegoDTO> Juegos { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }
         public virtual JugandoDTO Jugando { get; set; }
 
