@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.ModelBinding;
 using AutoMapper;
 using BusinessLogic.DataModel.Repositories;
 using Common.DataTransferObjects;
@@ -73,25 +70,29 @@ namespace BusinessLogic.Controllers
         {
             try
             {
+                if(usuario == "" || usuario == null || contraseña == null || contraseña == "")
+                {
+                    throw new Exception("Por favor, ingrese todos los campos.");
+                }
                 using (ModelosDBContainer context = new ModelosDBContainer())
                 {
                     UsuarioRepository repositorio = new UsuarioRepository(context);
 
-                    if (repositorio.Any(usuario))
+                    if (!repositorio.Any(usuario))
                     {
                         throw new Exception("El usuario no existe.");
                     }
 
                     var entity = repositorio.Get(usuario);
 
-                    if (repositorio.VerifyPassword(contraseña, entity.Password))
+                    if (!repositorio.VerifyPassword(contraseña, entity.Password))
                     {
                         throw new Exception("Credenciales incorrectas");
                     }
 
                     var user = this._mapper.Map<UsuarioDTO>(entity);
-                    var token = "nadsjknp'klmdasjkln;dasjn;klasd";
-                    //var token = JwtWorker.GenerateTokenJwt(user.Username);
+                    //var token = "nadsjknp'klmdasjkln;dasjn;klasd";
+                    var token = JwtWorker.GenerateTokenJwt(user.Username);
 
 
                     return new { 
@@ -132,6 +133,8 @@ namespace BusinessLogic.Controllers
         {
             try
             {
+               
+
                 using (ModelosDBContainer context = new ModelosDBContainer())
                 {
                     UsuarioRepository repositorio = new UsuarioRepository(context);

@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel.DataAnnotations;
-
 using Common.DataTransferObjects;
 using Common.Requests;
-using BusinessLogic.Controllers;
-using AutoMapper;
-using System.Web.Http.Cors;
 
 namespace gamequiz_api.Controllers
 {
-    
+
+    [AllowAnonymous]
     public class UsuarioController : ApiController
     {
         [HttpPost]
@@ -26,13 +17,22 @@ namespace gamequiz_api.Controllers
             BusinessLogic.Controllers.UsuarioController userController = new BusinessLogic.Controllers.UsuarioController();
             try
             {
+
                 userController.Create(usuario);
                 var entity = userController.GetByUsername(usuario.Username);
-                return new ResponseDTO(entity, "Se ah creado el usuario correctamente.", true);
+
+                return Content(HttpStatusCode.Created, new ResponseDTO(entity, "Se ah creado el usuario correctamente.", true));
             }
             catch (Exception e)
             {
-                return new ResponseDTO(null, e.Message, false);
+                switch (e.Message)
+                {
+                    case "El usuario ya existe.":
+                        return Content(HttpStatusCode.Conflict, new ResponseDTO(null, e.Message, true));
+
+                    default:
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, true));
+                }
             }
         }
 
@@ -48,11 +48,18 @@ namespace gamequiz_api.Controllers
             }
             catch (Exception e)
             {
-                return new ResponseDTO(null, e.Message, false);
-
+                switch (e.Message)
+                {
+                    case "Por favor, ingrese todos los campos.":
+                        return Content(HttpStatusCode.BadRequest, new ResponseDTO(null, e.Message, true));
+                    case "Credenciales incorrectas":
+                        return Content(HttpStatusCode.Unauthorized, new ResponseDTO(null, e.Message, true));
+                    case "El usuario no existe.":
+                        return Content(HttpStatusCode.NotFound, new ResponseDTO(null, e.Message, true));
+                    default:
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, true));
+                }
             }
         }
-
-
     }
 }

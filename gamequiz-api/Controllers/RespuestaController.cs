@@ -9,7 +9,9 @@ using System.Web.Http.Cors;
 
 namespace gamequiz_api.Controllers
 {
-    
+
+    //[Authorize]
+    [AllowAnonymous]
     public class RespuestaController : ApiController
     {
         // GET: api/Respuesta

@@ -18,6 +18,8 @@ namespace Common.DataTransferObjects
         }
 
         public int Id { get; set; }
+
+        [JsonIgnore]
         public string Password { get; set; }
         public string Username { get; set; }
         public string Nombre { get; set; }
@@ -29,5 +31,18 @@ namespace Common.DataTransferObjects
         public virtual ICollection<JuegoDTO> Juegos { get; set; }
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }
         public virtual JugandoDTO Jugando { get; set; }
+
+
+
+        /**
+         * SEE THE FOLLOWING POST
+         * https://stackoverflow.com/questions/11564091/making-a-property-deserialize-but-not-serialize-with-json-net
+         * **/
+        [JsonProperty("Password")]
+        private string PasswordAlternateSetter
+        {
+            // get is intentionally omitted here
+            set { Password = value; }
+        }
     }
 }

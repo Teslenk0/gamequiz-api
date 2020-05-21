@@ -8,6 +8,8 @@ using System.Web.Http;
 
 namespace gamequiz_api.Controllers
 {
+    //[Authorize]
+    [AllowAnonymous]
     public class PreguntaController : ApiController
     {
         // GET: api/Pregunta

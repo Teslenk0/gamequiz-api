@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -10,10 +11,9 @@ namespace gamequiz_api
         public static void Register(HttpConfiguration config)
         {
             // Configuración y servicios de API web
-
-            // Rutas de API web
             config.MapHttpAttributeRoutes();
-
+            config.MessageHandlers.Add(new JwtHandler());
+            
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
