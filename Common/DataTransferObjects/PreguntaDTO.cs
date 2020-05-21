@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +22,8 @@ namespace Common.DataTransferObjects
         public string Video { get; set; }
         public string Imagen { get; set; }
         public bool Quiz { get; set; }
+
+        public int JuegoId { get; set; }
 
         public virtual ICollection<RespuestaDTO> Respuestas { get; set; }
         public JuegoDTO Juego { get; set; }
