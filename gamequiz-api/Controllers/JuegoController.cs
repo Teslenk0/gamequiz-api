@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.DataTransferObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,23 +8,32 @@ using System.Web.Http;
 
 namespace gamequiz_api.Controllers
 {
+ 
     public class JuegoController : ApiController
     {
         // GET: api/Juego
-        public IEnumerable<string> Get()
+
+        public HashSet<JuegoDTO> Get()
         {
-            return new string[] { "value1", "value2" };
+            BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
+            var lista = juegoController.GetAll();
+            return lista;
         }
 
         // GET: api/Juego/5
-        public string Get(int id)
+        public JuegoDTO Get(int id)
         {
-            return "value";
+            BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
+            var juego = juegoController.GetById(id);
+            return juego;
         }
 
         // POST: api/Juego
-        public void Post([FromBody]string value)
+        public Object Post(JuegoDTO juego)
         {
+            BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
+            juegoController.Create(juego);
+            return new ResponseDTO(juego, "Se ha creado el juego correctamente.", true);
         }
 
         // PUT: api/Juego/5

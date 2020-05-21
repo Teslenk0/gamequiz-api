@@ -4,9 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace gamequiz_api.Controllers
 {
+    
     public class RespuestaController : ApiController
     {
         // GET: api/Respuesta

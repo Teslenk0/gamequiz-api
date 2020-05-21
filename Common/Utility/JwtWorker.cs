@@ -1,40 +1,41 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Common.Utility
 {
-    internal static class JwtWorker
+    public static class JwtWorker
     {
-
         public static string GenerateTokenJwt(string username)
         {
-            // appsetting for Token JWT
-            /*var secretKey = ConfigurationManager.AppSettings["JWT_SECRET_KEY"];
-            var audienceToken = ConfigurationManager.AppSettings["JWT_AUDIENCE_TOKEN"];
-            var issuerToken = ConfigurationManager.AppSettings["JWT_ISSUER_TOKEN"];
-            var expireTime = ConfigurationManager.AppSettings["JWT_EXPIRE_MINUTES"];
+            return null;
+           /* string key = "iujnpf32u9nh9u723hn7890fb78u90n2uy0i83hnr789bhnc80u79yewbyu8023bg780y6rbgy86243bg6y8wbec0y8by80234r7ty80"; //Secret key which will be used later during validation    
+            var issuer = "http://gamequiz.com";
 
-            var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(secretKey));
-            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            // create a claimsIdentity
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, username) });
+            var permClaims = new List<Claim>();
+            permClaims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+            permClaims.Add(new Claim("valid", "1"));
+            permClaims.Add(new Claim("userid", "1"));
+            permClaims.Add(new Claim("name", "bilal"));
 
-            // create token to the user
-            var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
-            var jwtSecurityToken = tokenHandler.CreateJwtSecurityToken(
-                audience: audienceToken,
-                issuer: issuerToken,
-                subject: claimsIdentity,
-                notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime)),
-                signingCredentials: signingCredentials);
+            //Create Security Token object by giving required parameters    
+            var token = new JwtSecurityToken(issuer, //Issure    
+                            issuer,  //Audience    
+                            permClaims,
+                            expires: DateTime.Now.AddDays(1),
+                            signingCredentials: credentials);
+            var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);
+            return jwt_token;*/
 
-            var jwtTokenString = tokenHandler.WriteToken(jwtSecurityToken);
-            return jwtTokenString;*/
         }
     }
 }

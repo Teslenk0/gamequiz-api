@@ -54,6 +54,7 @@ namespace BusinessLogic.DataModel.Repositories
         public void Create(Usuario usuario)
         {
             string hash = BCrypt.Net.BCrypt.HashPassword(usuario.Password, workFactor: 10);
+            usuario.Password = hash;
             this._context.UsuarioSet.Add(usuario);
         }
 

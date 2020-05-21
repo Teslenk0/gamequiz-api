@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Persistencia.Database;
 using Common.DataTransferObjects;
 using Common.Utility;
-
+using System.Diagnostics;
 
 namespace BusinessLogic.DataModel.Repositories
 {
@@ -46,10 +46,13 @@ namespace BusinessLogic.DataModel.Repositories
             return exists;
         }
 
-        public void Create(Juego Juego)
+        public void Create(Juego juego)
         {
-            Juego.Uuid = StringExtensions.Slugify(Juego.Id.ToString() + "-" + Juego.Nombre);
-            this._context.JuegoSet.Add(Juego);
+            juego.Uuid = StringExtensions.Slugify(juego.Id.ToString() + "-" + juego.Nombre);
+            DateTime myDateTime = DateTime.Now;
+            string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            juego.Creado = sqlFormattedDate; 
+            this._context.JuegoSet.Add(juego);
         }
 
         public void Delete(int Id)

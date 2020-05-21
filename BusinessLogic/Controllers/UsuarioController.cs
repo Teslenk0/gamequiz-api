@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLogic.DataModel.Repositories;
 using Common.DataTransferObjects;
+using Common.Utility;
 using Persistencia.Database;
 
 namespace BusinessLogic.Controllers
@@ -90,7 +91,7 @@ namespace BusinessLogic.Controllers
 
                     var user = this._mapper.Map<UsuarioDTO>(entity);
                     var token = "nadsjknp'klmdasjkln;dasjn;klasd";
-                    //var token = this.GenerateTokenJwt(user.Username);
+                    //var token = JwtWorker.GenerateTokenJwt(user.Username);
 
 
                     return new { 

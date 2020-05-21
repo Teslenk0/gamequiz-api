@@ -33,7 +33,7 @@ namespace Persistencia.Database
         public string Uuid { get; set; }
         public string Password { get; set; }
         public int UsuarioId { get; set; }
-        public System.DateTime Creado { get; set; }
+        public string Creado { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

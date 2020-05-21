@@ -70,14 +70,14 @@ namespace BusinessLogic.Controllers
             return Juegos;
         }
 
-        public void Create(JuegoDTO Juego)
+        public void Create(JuegoDTO juego)
         {
             try
             {
                 using (ModelosDBContainer context = new ModelosDBContainer())
                 {
                     JuegoRepository repositorio = new JuegoRepository(context);
-                    repositorio.Create(this._mapper.Map<Juego>(Juego));
+                    repositorio.Create(this._mapper.Map<Juego>(juego));
                     context.SaveChanges();
                 }
             }
