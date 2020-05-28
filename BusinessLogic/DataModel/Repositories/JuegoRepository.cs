@@ -48,7 +48,10 @@ namespace BusinessLogic.DataModel.Repositories
 
         public void Create(Juego juego)
         {
-            juego.Uuid = StringExtensions.Slugify(juego.Id.ToString() + "-" + juego.Nombre);
+            juego.Uuid = "slug";
+            juego.Jugados = 0;
+            juego.Activo = true;
+            juego.Caratula = "temp_image";
             DateTime myDateTime = DateTime.Now;
             string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
             juego.Creado = sqlFormattedDate; 

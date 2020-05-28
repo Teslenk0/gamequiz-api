@@ -11,11 +11,8 @@ namespace gamequiz_api
     {
         public static void Register(HttpConfiguration config)
         {
-            /**
-             * First parameter: URL,
-             * Second parameter: header
-             * Third paramenter: methods
-             * **/
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 

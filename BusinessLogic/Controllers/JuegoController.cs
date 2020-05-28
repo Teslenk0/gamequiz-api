@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogic.DataModel.Repositories;
 using Common.DataTransferObjects;
+using Common.Utility;
 using Persistencia.Database;
 using System;
 using System.Collections.Generic;
@@ -103,15 +104,20 @@ namespace BusinessLogic.Controllers
                 {
                     JuegoRepository repositorio = new JuegoRepository(context);
 
-                    repositorio.Create(this._mapper.Map<Juego>(juego));
+                    var juegoEntity = this._mapper.Map<Juego>(juego);
+                    repositorio.Create(juegoEntity);
+
                     context.SaveChanges();
 
+                    juegoEntity.Uuid = StringExtensions.Slugify(juegoEntity.Id.ToString() + "-" + juegoEntity.Nombre);
+
+                    context.SaveChanges();
 
                     /**
                      * https://stackoverflow.com/questions/5212751/how-can-i-get-id-of-inserted-entity-in-entity-framework
                      */
 
-                    return this._mapper.Map<JuegoDTO>(repositorio.Get(juego.Id));
+                    return this._mapper.Map<JuegoDTO>(repositorio.Get(juegoEntity.Id));
                 }
             }
             catch (Exception ex)
@@ -134,9 +140,7 @@ namespace BusinessLogic.Controllers
                     }
 
                     var juego = repositorio.Get(id);
-
                     juego.Caratula = url;
-
                     context.SaveChanges();
                 }
             }

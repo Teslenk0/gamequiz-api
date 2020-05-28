@@ -29,7 +29,7 @@ namespace Persistencia.Database
         public bool Activo { get; set; }
         public bool Privado { get; set; }
         public string Caratula { get; set; }
-        public string Musica { get; set; }
+        public int Musica { get; set; }
         public string Uuid { get; set; }
         public string Password { get; set; }
         public int UsuarioId { get; set; }

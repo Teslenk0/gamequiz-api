@@ -63,7 +63,7 @@
     <Property Name="Activo" Type="bit" Nullable="false" />
     <Property Name="Privado" Type="bit" Nullable="false" />
     <Property Name="Caratula" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Musica" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Musica" Type="int" Nullable="false" />
     <Property Name="Uuid" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UsuarioId" Type="int" Nullable="false" />
@@ -258,7 +258,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="Privado" Type="Boolean" Nullable="false" />
           <Property Name="Caratula" Type="String" Nullable="false" />
-          <Property Name="Musica" Type="String" Nullable="false" />
+          <Property Name="Musica" Type="Int32" Nullable="false" />
           <Property Name="Uuid" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="ModelosDB.UsuarioJuego" FromRole="Juego" ToRole="Usuario" />
