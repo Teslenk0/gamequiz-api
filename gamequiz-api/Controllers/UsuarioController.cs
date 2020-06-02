@@ -69,14 +69,16 @@ namespace gamequiz_api.Controllers
         [Authorize]
         [HttpGet]
         [Route("api/me")]
-        public Object FetchUserData(LoginRequest req)
+        public Object FetchUserData()
         {
             BusinessLogic.Controllers.UsuarioController userController = new BusinessLogic.Controllers.UsuarioController();
             try
             {
+                
                 // saco el nombre de usuario a partir del token recibido
                 var username = Thread.CurrentPrincipal.Identity.Name;
                 var user = userController.GetByUsername(username);
+              
                 return new ResponseDTO(user, "Usuario encontrado.", true);
             }
             catch (Exception e)
