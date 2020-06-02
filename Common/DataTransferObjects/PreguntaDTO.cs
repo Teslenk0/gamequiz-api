@@ -25,6 +25,11 @@ namespace Common.DataTransferObjects
 
         public int JuegoId { get; set; }
 
+        public int FinVideo { get; set; }
+
+        public int InicioVideo { get; set; }
+
+
         public virtual ICollection<RespuestaDTO> Respuestas { get; set; }
         public JuegoDTO Juego { get; set; }
     }
