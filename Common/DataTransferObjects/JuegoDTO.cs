@@ -32,7 +32,10 @@ namespace Common.DataTransferObjects
 
         public string Creado { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         public UsuarioDTO Usuario { get; set; }
+
 
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }
 

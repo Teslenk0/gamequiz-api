@@ -5,6 +5,7 @@ using Common.Utility;
 using Persistencia.Database;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,6 +109,8 @@ namespace BusinessLogic.Controllers
                     repositorio.Create(juegoEntity);
 
                     context.SaveChanges();
+
+                    
 
                     juegoEntity.Uuid = StringExtensions.Slugify(juegoEntity.Id.ToString() + "-" + juegoEntity.Nombre);
 

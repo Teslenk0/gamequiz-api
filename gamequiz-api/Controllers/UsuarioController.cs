@@ -4,13 +4,16 @@ using System.Web.Http;
 using Common.DataTransferObjects;
 using Common.Requests;
 using System.Web.Http.Cors;
+using System.Threading;
+using System.Diagnostics;
 
 namespace gamequiz_api.Controllers
 {
 
-    [AllowAnonymous]
+    
     public class UsuarioController : ApiController
     {
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/registrar")]
         public Object Post(UsuarioDTO usuario)
@@ -37,6 +40,7 @@ namespace gamequiz_api.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/acceder")]
         public Object Login(LoginRequest req)
@@ -60,6 +64,24 @@ namespace gamequiz_api.Controllers
                     default:
                         return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, true));
                 }
+            }
+        }
+        [Authorize]
+        [HttpGet]
+        [Route("api/me")]
+        public Object FetchUserData(LoginRequest req)
+        {
+            BusinessLogic.Controllers.UsuarioController userController = new BusinessLogic.Controllers.UsuarioController();
+            try
+            {
+                // saco el nombre de usuario a partir del token recibido
+                var username = Thread.CurrentPrincipal.Identity.Name;
+                var user = userController.GetByUsername(username);
+                return new ResponseDTO(user, "Usuario encontrado.", true);
+            }
+            catch (Exception e)
+            {
+                return new ResponseDTO(null, e.Message, false);
             }
         }
     }

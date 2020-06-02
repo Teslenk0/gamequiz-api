@@ -91,7 +91,7 @@ namespace BusinessLogic.Controllers
                     }
 
                     var user = this._mapper.Map<UsuarioDTO>(entity);
-                    //var token = "nadsjknp'klmdasjkln;dasjn;klasd";
+                  
                     var token = JwtWorker.GenerateTokenJwt(user.Username);
 
 

@@ -13,7 +13,8 @@ using System.Web.Http;
 
 namespace HelloWorld.Controller
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
+    [Authorize]
     public class FileUploadingController : ApiController
     {
 

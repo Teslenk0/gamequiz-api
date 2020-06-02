@@ -9,8 +9,8 @@ using System.Web.Http.Cors;
 namespace gamequiz_api.Controllers
 {
 
-    //[Authorize]
-    [AllowAnonymous]
+    [Authorize]
+    //[AllowAnonymous]
     public class PuntajeController : ApiController
     {
         // GET: api/Puntaje

@@ -26,8 +26,7 @@ namespace Common.DataTransferObjects
         public string Apellido { get; set; }
         public System.DateTime FechaNac { get; set; }
 
-        [JsonIgnore]
-        [IgnoreDataMember]
+        
         public virtual ICollection<JuegoDTO> Juegos { get; set; }
 
         [JsonIgnore]

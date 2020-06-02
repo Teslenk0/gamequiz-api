@@ -9,8 +9,8 @@ using System.Web.Http;
 namespace gamequiz_api.Controllers
 {
 
-    //[Authorize]
-    [AllowAnonymous]
+    [Authorize]
+    //[AllowAnonymous]
     public class JuegoController : ApiController
     {
 
