@@ -87,7 +87,7 @@
     <Property Name="Tiempo" Type="bigint" Nullable="false" />
     <Property Name="Puntos" Type="bigint" Nullable="false" />
     <Property Name="Video" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Imagen" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Imagen" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Quiz" Type="bit" Nullable="false" />
     <Property Name="JuegoId" Type="int" Nullable="false" />
     <Property Name="InicioVideo" Type="bigint" Nullable="true" />
@@ -290,7 +290,7 @@
           <Property Name="Tiempo" Type="Int64" Nullable="false" />
           <Property Name="Puntos" Type="Int64" Nullable="false" />
           <Property Name="Video" Type="String" Nullable="true" />
-          <Property Name="Imagen" Type="String" Nullable="false" />
+          <Property Name="Imagen" Type="String" Nullable="true" />
           <Property Name="Quiz" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Respuestas" Relationship="ModelosDB.PreguntaRespuesta" FromRole="Pregunta" ToRole="Respuesta" />
           <NavigationProperty Name="Juego" Relationship="ModelosDB.JuegoPregunta" FromRole="Pregunta" ToRole="Juego" />

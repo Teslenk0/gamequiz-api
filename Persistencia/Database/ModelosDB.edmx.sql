@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/02/2020 16:41:44
+-- Date Created: 06/03/2020 17:52:23
 -- Generated from EDMX file: C:\Users\tesla\source\repos\gamequiz-api\Persistencia\Database\ModelosDB.edmx
 -- --------------------------------------------------
 
@@ -110,7 +110,7 @@ CREATE TABLE [dbo].[PreguntaSet] (
     [Tiempo] bigint  NOT NULL,
     [Puntos] bigint  NOT NULL,
     [Video] nvarchar(max)  NULL,
-    [Imagen] nvarchar(max)  NOT NULL,
+    [Imagen] nvarchar(max)  NULL,
     [Quiz] bit  NOT NULL,
     [JuegoId] int  NOT NULL,
     [InicioVideo] bigint  NULL,
