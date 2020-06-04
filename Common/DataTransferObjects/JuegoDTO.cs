@@ -39,8 +39,6 @@ namespace Common.DataTransferObjects
 
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }
 
-        [JsonIgnore]
-        [IgnoreDataMember]
         public virtual ICollection<PreguntaDTO> Preguntas { get; set; }
 
         [JsonIgnore]

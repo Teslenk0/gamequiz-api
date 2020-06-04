@@ -32,8 +32,8 @@ namespace gamequiz_api.Controllers
         public Object Post(PreguntaDTO pregunta)
         {
             BusinessLogic.Controllers.PreguntaController preguntaController = new BusinessLogic.Controllers.PreguntaController();
-            preguntaController.Create(pregunta);
-            return new ResponseDTO(pregunta, "Se ha creado la pregunta correctamente.", true);
+            var preguntaCreada = preguntaController.Create(pregunta);
+            return new ResponseDTO(preguntaCreada, "Se ha creado la pregunta correctamente.", true);
         }
     }
 }

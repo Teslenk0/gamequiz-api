@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/02/2020 19:53:59
--- Generated from EDMX file: C:\Users\Esteban\Desktop\NET\gamequiz-api\Persistencia\Database\ModelosDB.edmx
+-- Date Created: 06/03/2020 17:52:23
+-- Generated from EDMX file: C:\Users\tesla\source\repos\gamequiz-api\Persistencia\Database\ModelosDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -110,7 +110,7 @@ CREATE TABLE [dbo].[PreguntaSet] (
     [Tiempo] bigint  NOT NULL,
     [Puntos] bigint  NOT NULL,
     [Video] nvarchar(max)  NULL,
-    [Imagen] nvarchar(max)  NOT NULL,
+    [Imagen] nvarchar(max)  NULL,
     [Quiz] bit  NOT NULL,
     [JuegoId] int  NOT NULL,
     [InicioVideo] bigint  NULL,
