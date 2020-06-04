@@ -15,12 +15,12 @@ namespace gamequiz_api.Controllers
     {
 
 
-        public HashSet<JuegoDTO> Get()
+        public HashSet<JuegoDTO> Get(string nombre)
         {
             try
             {
                 BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
-                var lista = juegoController.GetAll();
+                var lista = juegoController.GetAll(nombre);
                 return lista;
             }
             catch (Exception e)

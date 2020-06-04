@@ -80,14 +80,23 @@ namespace BusinessLogic.Controllers
             return false;
         }
 
-        public HashSet<JuegoDTO> GetAll()
+        public HashSet<JuegoDTO> GetAll(string nombre)
         {
+            
             HashSet<JuegoDTO> Juegos = new HashSet<JuegoDTO>();
 
             using (ModelosDBContainer context = new ModelosDBContainer())
             {
+                HashSet<Juego> entities;
                 JuegoRepository repositorio = new JuegoRepository(context);
-                var entities = repositorio.GetAll();
+                if (nombre != "" && nombre != null && nombre != "null" && nombre != "undefined")
+                {
+                      entities = repositorio.GetAll(nombre);
+                }
+                else
+                {
+                      entities = repositorio.GetAll();
+                }
 
                 foreach (var entity in entities)
                 {
