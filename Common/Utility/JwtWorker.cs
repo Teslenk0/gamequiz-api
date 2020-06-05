@@ -13,7 +13,7 @@ namespace Common.Utility
             var secretKey = "jklnhfadsuijnu32893hr879hbd37u89hn78u32h78h7u89qwdj90189";
             var audienceToken = "http://gamequiz.app";
             var issuerToken = "http://api.gamequiz.app";
-            var expireTime = 30;
+            var expireTime = 1200;
 
             var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(secretKey));
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);

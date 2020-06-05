@@ -70,15 +70,17 @@ namespace BusinessLogic.Controllers
             return respuestas;
         }
 
-        public void Create(RespuestaDTO respuesta)
+        public Object Create(RespuestaDTO respuesta)
         {
             try
             {
                 using (ModelosDBContainer context = new ModelosDBContainer())
                 {
                     RespuestaRepository repositorio = new RespuestaRepository(context);
-                    repositorio.Create(this._mapper.Map<Respuesta>(respuesta));
+                    var resp = this._mapper.Map<Respuesta>(respuesta);
+                    repositorio.Create(resp);
                     context.SaveChanges();
+                    return resp;
                 }
             }
             catch (Exception ex)

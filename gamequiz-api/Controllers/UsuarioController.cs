@@ -32,10 +32,10 @@ namespace gamequiz_api.Controllers
                 switch (e.Message)
                 {
                     case "El usuario ya existe.":
-                        return Content(HttpStatusCode.Conflict, new ResponseDTO(null, e.Message, true));
+                        return Content(HttpStatusCode.Conflict, new ResponseDTO(null, e.Message, false));
 
                     default:
-                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, true));
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
                 }
             }
         }
@@ -56,13 +56,13 @@ namespace gamequiz_api.Controllers
                 switch (e.Message)
                 {
                     case "Por favor, ingrese todos los campos.":
-                        return Content(HttpStatusCode.BadRequest, new ResponseDTO(null, e.Message, true));
+                        return Content(HttpStatusCode.BadRequest, new ResponseDTO(null, e.Message, false));
                     case "Credenciales incorrectas":
-                        return Content(HttpStatusCode.Unauthorized, new ResponseDTO(null, e.Message, true));
+                        return Content(HttpStatusCode.Unauthorized, new ResponseDTO(null, e.Message, false));
                     case "El usuario no existe.":
-                        return Content(HttpStatusCode.NotFound, new ResponseDTO(null, e.Message, true));
+                        return Content(HttpStatusCode.NotFound, new ResponseDTO(null, e.Message, false));
                     default:
-                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, true));
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace gamequiz_api.Controllers
             }
             catch (Exception e)
             {
-                return new ResponseDTO(null, e.Message, false);
+                return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
             }
         }
     }

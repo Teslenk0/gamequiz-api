@@ -33,9 +33,15 @@ namespace gamequiz_api.Controllers
         // POST: api/Respuesta
         public Object Post(RespuestaDTO respuesta)
         {
-            BusinessLogic.Controllers.RespuestaController respuestaController = new BusinessLogic.Controllers.RespuestaController();
-            respuestaController.Create(respuesta);
-            return new ResponseDTO(respuesta, "Se ha creado la respuesta correctamente.", true);
+            try
+            {
+                BusinessLogic.Controllers.RespuestaController respuestaController = new BusinessLogic.Controllers.RespuestaController();
+                var resp = respuestaController.Create(respuesta);
+                return new ResponseDTO(resp, "Se ha creado la respuesta correctamente.", true);
+            }
+            catch (Exception e) {
+                return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
+            }
         }
     }
 }
