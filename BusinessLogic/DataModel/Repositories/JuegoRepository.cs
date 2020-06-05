@@ -35,7 +35,13 @@ namespace BusinessLogic.DataModel.Repositories
 
         public HashSet<Juego> GetAll()
         {
-            var entitySet = this._context.JuegoSet.Select(s => s).ToHashSet();
+            var entitySet = this._context.JuegoSet.Where(s => s.Privado == false && s.Activo == true).ToHashSet();
+            return entitySet;
+        }
+
+        public HashSet<Juego> GetAll(string nombre)
+        {
+            var entitySet = this._context.JuegoSet.Where(s => s.Nombre.Contains(nombre) && s.Privado == false && s.Activo == true).ToHashSet();
             return entitySet;
         }
 
@@ -43,6 +49,12 @@ namespace BusinessLogic.DataModel.Repositories
         public bool Any(int Id)
         {
             var exists = this._context.JuegoSet.Any(s => s.Id == Id);
+            return exists;
+        }
+
+        public bool Any(string Uuid)
+        {
+            var exists = this._context.JuegoSet.Any(s => s.Uuid == Uuid);
             return exists;
         }
 

@@ -15,12 +15,12 @@ namespace gamequiz_api.Controllers
     {
 
 
-        public HashSet<JuegoDTO> Get()
+        public HashSet<JuegoDTO> Get(string nombre)
         {
             try
             {
                 BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
-                var lista = juegoController.GetAll();
+                var lista = juegoController.GetAll(nombre);
                 return lista;
             }
             catch (Exception e)
@@ -36,6 +36,30 @@ namespace gamequiz_api.Controllers
             {
                 BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
                 var juego = juegoController.GetById(id);
+                return juego;
+            }
+            catch (Exception e)
+            {
+                switch (e.Message)
+                {
+                    case "Juego no existente.":
+                        return Content(HttpStatusCode.NotFound, new ResponseDTO(null, e.Message, false));
+                    default:
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
+                }
+
+            }
+        }
+
+
+        [HttpGet]
+        [Route("api/juego/Uuid/{Uuid}")]
+        public Object GetByUuid(string Uuid)
+        {
+            try
+            {
+                BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
+                var juego = juegoController.GetByUuid(Uuid);
                 return juego;
             }
             catch (Exception e)

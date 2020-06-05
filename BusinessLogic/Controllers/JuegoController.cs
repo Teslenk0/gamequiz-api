@@ -61,6 +61,22 @@ namespace BusinessLogic.Controllers
 
         }
 
+        public JuegoDTO GetByUuid(string Uuid)
+        {
+
+            using (ModelosDBContainer context = new ModelosDBContainer())
+            {
+                JuegoRepository repositorio = new JuegoRepository(context);
+                if (!repositorio.Any(Uuid))
+                {
+                    throw new Exception("Juego no existente.");
+                }
+                var entity = repositorio.GetByUuid(Uuid);
+                return this._mapper.Map<JuegoDTO>(entity);
+            }
+
+        }
+
         public bool CambiarEstado(int id)
         {
             using (ModelosDBContainer context = new ModelosDBContainer())
@@ -80,14 +96,23 @@ namespace BusinessLogic.Controllers
             return false;
         }
 
-        public HashSet<JuegoDTO> GetAll()
+        public HashSet<JuegoDTO> GetAll(string nombre)
         {
+            
             HashSet<JuegoDTO> Juegos = new HashSet<JuegoDTO>();
 
             using (ModelosDBContainer context = new ModelosDBContainer())
             {
+                HashSet<Juego> entities;
                 JuegoRepository repositorio = new JuegoRepository(context);
-                var entities = repositorio.GetAll();
+                if (nombre != "" && nombre != null && nombre != "null" && nombre != "undefined")
+                {
+                      entities = repositorio.GetAll(nombre);
+                }
+                else
+                {
+                      entities = repositorio.GetAll();
+                }
 
                 foreach (var entity in entities)
                 {
