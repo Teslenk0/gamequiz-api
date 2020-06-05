@@ -52,6 +52,30 @@ namespace gamequiz_api.Controllers
         }
 
 
+        [HttpGet]
+        [Route("api/juego/Uuid/{Uuid}")]
+        public Object GetByUuid(string Uuid)
+        {
+            try
+            {
+                BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
+                var juego = juegoController.GetByUuid(Uuid);
+                return juego;
+            }
+            catch (Exception e)
+            {
+                switch (e.Message)
+                {
+                    case "Juego no existente.":
+                        return Content(HttpStatusCode.NotFound, new ResponseDTO(null, e.Message, false));
+                    default:
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
+                }
+
+            }
+        }
+
+
         public Object Post(JuegoDTO juego)
         {
             try

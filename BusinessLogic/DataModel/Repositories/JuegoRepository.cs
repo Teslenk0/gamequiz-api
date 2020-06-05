@@ -52,6 +52,12 @@ namespace BusinessLogic.DataModel.Repositories
             return exists;
         }
 
+        public bool Any(string Uuid)
+        {
+            var exists = this._context.JuegoSet.Any(s => s.Uuid == Uuid);
+            return exists;
+        }
+
         public void Create(Juego juego)
         {
             juego.Uuid = "slug";

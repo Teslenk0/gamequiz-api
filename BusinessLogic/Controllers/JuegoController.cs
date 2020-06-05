@@ -61,6 +61,22 @@ namespace BusinessLogic.Controllers
 
         }
 
+        public JuegoDTO GetByUuid(string Uuid)
+        {
+
+            using (ModelosDBContainer context = new ModelosDBContainer())
+            {
+                JuegoRepository repositorio = new JuegoRepository(context);
+                if (!repositorio.Any(Uuid))
+                {
+                    throw new Exception("Juego no existente.");
+                }
+                var entity = repositorio.GetByUuid(Uuid);
+                return this._mapper.Map<JuegoDTO>(entity);
+            }
+
+        }
+
         public bool CambiarEstado(int id)
         {
             using (ModelosDBContainer context = new ModelosDBContainer())
