@@ -86,5 +86,27 @@ namespace gamequiz_api.Controllers
                 return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
             }
         }
+
+        [AllowAnonymous]
+        public Object Get(int id)
+        {
+            try
+            {
+                BusinessLogic.Controllers.UsuarioController usuarioController = new BusinessLogic.Controllers.UsuarioController();
+                var user = usuarioController.GetById(id);
+                return user;
+            }
+            catch (Exception e)
+            {
+                switch (e.Message)
+                {
+                    case "Usuario no existente.":
+                        return Content(HttpStatusCode.NotFound, new ResponseDTO(null, e.Message, false));
+                    default:
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
+                }
+
+            }
+        }
     }
 }
