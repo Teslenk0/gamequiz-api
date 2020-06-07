@@ -13,6 +13,7 @@
 .gamequiz-api\Web.config
 .BusinessLogic\App.config
 .Persistencia\App.config
+.gamequiz-api\Content
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

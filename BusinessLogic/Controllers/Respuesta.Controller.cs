@@ -88,5 +88,24 @@ namespace BusinessLogic.Controllers
                 throw ex;
             }
         }
+
+        public Object AumentarSel(int id)
+        {
+            try
+            {
+                using (ModelosDBContainer context = new ModelosDBContainer())
+                {
+                    RespuestaRepository repositorio = new RespuestaRepository(context);
+                    var r = repositorio.Get(id);
+                    r.VecesSeleccionada++;
+                    context.SaveChanges();
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -43,5 +43,21 @@ namespace gamequiz_api.Controllers
                 return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
             }
         }
+
+        [HttpPost]
+        [Route("api/respuesta/aumentar/{id}")]
+        public Object AumentarSel(int id)
+        {
+            try
+            {
+                BusinessLogic.Controllers.RespuestaController respuestaController = new BusinessLogic.Controllers.RespuestaController();
+                var resp = respuestaController.AumentarSel(id);
+                return new ResponseDTO(resp, "Se ha incrementado correctamente.", true);
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
+            }
+        }
     }
 }
