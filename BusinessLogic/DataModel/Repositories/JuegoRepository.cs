@@ -63,7 +63,6 @@ namespace BusinessLogic.DataModel.Repositories
             juego.Uuid = "slug";
             juego.Jugados = 0;
             juego.Activo = true;
-            juego.Caratula = "temp_image";
             DateTime myDateTime = DateTime.Now;
             
             string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");

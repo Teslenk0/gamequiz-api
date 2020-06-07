@@ -17,6 +17,7 @@ namespace gamequiz_api.Controllers
 
         public HashSet<JuegoDTO> Get(string nombre)
         {
+
             try
             {
                 BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
@@ -78,6 +79,10 @@ namespace gamequiz_api.Controllers
 
         public Object Post(JuegoDTO juego)
         {
+            string BASE_URL = System.Configuration.ConfigurationManager.AppSettings["BASE_URL"].ToString();
+            string BASE_PATH = System.Configuration.ConfigurationManager.AppSettings["BASE_IMAGES_PATH"].ToString();
+
+            juego.Caratula = BASE_URL + BASE_PATH + "/default.png";
             try
             {
                 BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
