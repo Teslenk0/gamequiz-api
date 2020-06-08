@@ -70,25 +70,27 @@ namespace BusinessLogic.Controllers
 			return puntajes;
 		}
 
-		public void Create(PuntajeDTO puntaje)
+		public Object Create(PuntajeDTO puntaje)
 		{
 			try
 			{
 				using (ModelosDBContainer context = new ModelosDBContainer())
 				{
 					PuntajeRepository repositorio = new PuntajeRepository(context);
-					
-					if (repositorio.AnyByUsuarioAndJuego(puntaje.Usuario.Id, puntaje.Juego.Id))
+
+					if (repositorio.AnyByUsuarioAndJuego(puntaje.UsuarioId, puntaje.JuegoId))
 					{
-						Puntaje p = repositorio.Get(puntaje.Usuario.Id, puntaje.Juego.Id);
-						if(p.Puntos < puntaje.Puntos)
+						Puntaje p = repositorio.Get(puntaje.UsuarioId, puntaje.JuegoId);
+						if (p.Puntos < puntaje.Puntos)
 							p.Puntos = puntaje.Puntos;
 					}
 					else
 					{
 						repositorio.Create(this._mapper.Map<Puntaje>(puntaje));
 					}
+					var pu = repositorio.Get(puntaje.UsuarioId, puntaje.JuegoId);
 					context.SaveChanges();
+					return pu;
 				}
 			}
 			catch (Exception ex)

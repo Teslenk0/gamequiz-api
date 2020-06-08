@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.DataTransferObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,18 +27,19 @@ namespace gamequiz_api.Controllers
         }
 
         // POST: api/Puntaje
-        public void Post([FromBody]string value)
+        public Object Post(PuntajeDTO puntaje)
         {
+            try
+            {
+                BusinessLogic.Controllers.PuntajeController puntajeController = new BusinessLogic.Controllers.PuntajeController();
+                var resp = puntajeController.Create(puntaje);
+                return new ResponseDTO(resp, "Se ha creado el puntaje correctamente.", true);
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
+            }
         }
 
-        // PUT: api/Puntaje/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Puntaje/5
-        public void Delete(int id)
-        {
-        }
     }
 }
