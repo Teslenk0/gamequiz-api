@@ -96,6 +96,25 @@ namespace BusinessLogic.Controllers
             return false;
         }
 
+        public bool AumentarJugados(int id)
+        {
+            using (ModelosDBContainer context = new ModelosDBContainer())
+            {
+                JuegoRepository repositorio = new JuegoRepository(context);
+
+                if (!repositorio.Any(id))
+                {
+                    throw new Exception("Juego no existente.");
+                }
+
+                var juego = repositorio.Get(id);
+
+                juego.Jugados++;
+                context.SaveChanges();
+            }
+            return false;
+        }
+
         public HashSet<JuegoDTO> GetAll(string nombre)
         {
             

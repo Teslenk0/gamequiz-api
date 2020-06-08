@@ -126,5 +126,27 @@ namespace gamequiz_api.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/juego/aumentarJugados/{id}")]
+        public Object AumentarJugados(int id)
+        {
+            try
+            {
+                BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
+                juegoController.AumentarJugados(id);
+                return new ResponseDTO(null, "Se ah aumentado correctamente", true);
+            }
+            catch (Exception e)
+            {
+                switch (e.Message)
+                {
+                    case "Juego no existente.":
+                        return Content(HttpStatusCode.NotFound, new ResponseDTO(null, e.Message, false));
+                    default:
+                        return Content(HttpStatusCode.InternalServerError, new ResponseDTO(null, e.Message, false));
+                }
+            }
+        }
+
     }
 }

@@ -31,6 +31,11 @@ namespace gamequiz_api.Controllers
         // POST: api/Pregunta
         public Object Post(PreguntaDTO pregunta)
         {
+            string BASE_URL = System.Configuration.ConfigurationManager.AppSettings["BASE_URL"].ToString();
+            string BASE_PATH = System.Configuration.ConfigurationManager.AppSettings["BASE_IMAGES_PATH"].ToString();
+
+            pregunta.Imagen = BASE_URL + BASE_PATH + "/default.png";
+
             BusinessLogic.Controllers.PreguntaController preguntaController = new BusinessLogic.Controllers.PreguntaController();
             var preguntaCreada = preguntaController.Create(pregunta);
             return new ResponseDTO(preguntaCreada, "Se ha creado la pregunta correctamente.", true);
