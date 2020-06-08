@@ -357,3 +357,8 @@ MigrationBackup/
 #Persitencia/App.Config
 #BusinessLogin/App.Config
 #gamequiz-api/Web.Config
+BusinessLogic/App.config
+
+gamequiz-api/Web.config
+
+Persistencia/App.Config

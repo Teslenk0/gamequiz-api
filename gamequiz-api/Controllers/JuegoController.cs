@@ -8,16 +8,11 @@ using System.Web.Http;
 
 namespace gamequiz_api.Controllers
 {
-
-    [Authorize]
-    //[AllowAnonymous]
     public class JuegoController : ApiController
     {
-
-
+        [AllowAnonymous]
         public HashSet<JuegoDTO> Get(string nombre)
         {
-
             try
             {
                 BusinessLogic.Controllers.JuegoController juegoController = new BusinessLogic.Controllers.JuegoController();
@@ -30,7 +25,7 @@ namespace gamequiz_api.Controllers
             }
         }
 
-
+        [AllowAnonymous]
         public Object Get(int id)
         {
             try
@@ -52,7 +47,7 @@ namespace gamequiz_api.Controllers
             }
         }
 
-
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/juego/Uuid/{Uuid}")]
         public Object GetByUuid(string Uuid)
@@ -75,8 +70,7 @@ namespace gamequiz_api.Controllers
 
             }
         }
-
-
+        [Authorize]
         public Object Post(JuegoDTO juego)
         {
             string BASE_URL = System.Configuration.ConfigurationManager.AppSettings["BASE_URL"].ToString();
@@ -103,7 +97,7 @@ namespace gamequiz_api.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPost]
         [Route("api/juego/cambiar_estado/{id}")]
         public Object CambiarEstado(int id)
@@ -126,6 +120,7 @@ namespace gamequiz_api.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/juego/aumentarJugados/{id}")]
         public Object AumentarJugados(int id)
