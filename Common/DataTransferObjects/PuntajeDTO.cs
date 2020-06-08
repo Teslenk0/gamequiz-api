@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Common.DataTransferObjects
 {
@@ -10,7 +12,9 @@ namespace Common.DataTransferObjects
     {
         public int Id { get; set; }
         public long Puntos { get; set; }
-    
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual JuegoDTO Juego { get; set; }
         public virtual UsuarioDTO Usuario { get; set; }
     }

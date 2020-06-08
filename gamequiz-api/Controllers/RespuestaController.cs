@@ -9,12 +9,10 @@ using System.Web.Http.Cors;
 
 namespace gamequiz_api.Controllers
 {
-
-    [Authorize]
-    //[AllowAnonymous]
     public class RespuestaController : ApiController
     {
         // GET: api/Respuesta
+        [AllowAnonymous]
         public HashSet<RespuestaDTO> Get()
         {
             BusinessLogic.Controllers.RespuestaController respuestaController = new BusinessLogic.Controllers.RespuestaController();
@@ -23,6 +21,7 @@ namespace gamequiz_api.Controllers
         }
 
         // GET: api/Respuesta/5
+        [AllowAnonymous]
         public RespuestaDTO Get(int id)
         {
             BusinessLogic.Controllers.RespuestaController respuestaController = new BusinessLogic.Controllers.RespuestaController();
@@ -31,6 +30,7 @@ namespace gamequiz_api.Controllers
         }
 
         // POST: api/Respuesta
+        [Authorize]
         public Object Post(RespuestaDTO respuesta)
         {
             try
@@ -45,6 +45,7 @@ namespace gamequiz_api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("api/respuesta/aumentar/{id}")]
         public Object AumentarSel(int id)
         {
