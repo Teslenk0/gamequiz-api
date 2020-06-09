@@ -11,17 +11,12 @@
     <EntitySet Name="PuntajeSet" EntityType="ModelosDB.Store.PuntajeSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PreguntaSet" EntityType="ModelosDB.Store.PreguntaSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RespuestaSet" EntityType="ModelosDB.Store.RespuestaSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="JugandoSet" EntityType="ModelosDB.Store.JugandoSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UsuarioJuego" Association="ModelosDB.Store.UsuarioJuego">
       <End Role="Usuario" EntitySet="UsuarioSet" />
       <End Role="Juego" EntitySet="JuegoSet" />
     </AssociationSet>
     <AssociationSet Name="JuegoPuntaje" Association="ModelosDB.Store.JuegoPuntaje">
       <End Role="Juego" EntitySet="JuegoSet" />
-      <End Role="Puntaje" EntitySet="PuntajeSet" />
-    </AssociationSet>
-    <AssociationSet Name="UsuarioPuntaje" Association="ModelosDB.Store.UsuarioPuntaje">
-      <End Role="Usuario" EntitySet="UsuarioSet" />
       <End Role="Puntaje" EntitySet="PuntajeSet" />
     </AssociationSet>
     <AssociationSet Name="PreguntaRespuesta" Association="ModelosDB.Store.PreguntaRespuesta">
@@ -31,14 +26,6 @@
     <AssociationSet Name="JuegoPregunta" Association="ModelosDB.Store.JuegoPregunta">
       <End Role="Juego" EntitySet="JuegoSet" />
       <End Role="Pregunta" EntitySet="PreguntaSet" />
-    </AssociationSet>
-    <AssociationSet Name="UsuarioJugando" Association="ModelosDB.Store.UsuarioJugando">
-      <End Role="Usuario" EntitySet="UsuarioSet" />
-      <End Role="Jugando" EntitySet="JugandoSet" />
-    </AssociationSet>
-    <AssociationSet Name="JuegoJugando" Association="ModelosDB.Store.JuegoJugando">
-      <End Role="Juego" EntitySet="JuegoSet" />
-      <End Role="Jugando" EntitySet="JugandoSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="UsuarioSet">
@@ -76,7 +63,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Puntos" Type="bigint" Nullable="false" />
     <Property Name="JuegoId" Type="int" Nullable="false" />
-    <Property Name="UsuarioId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PreguntaSet">
     <Key>
@@ -103,14 +90,6 @@
     <Property Name="VecesSeleccionada" Type="bigint" Nullable="false" />
     <Property Name="PreguntaId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="JugandoSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JuegoId" Type="int" Nullable="false" />
-    <Property Name="Usuario_Id" Type="int" Nullable="false" />
-  </EntityType>
   <Association Name="UsuarioJuego">
     <End Role="Usuario" Type="ModelosDB.Store.UsuarioSet" Multiplicity="1" />
     <End Role="Juego" Type="ModelosDB.Store.JuegoSet" Multiplicity="*" />
@@ -132,18 +111,6 @@
       </Principal>
       <Dependent Role="Puntaje">
         <PropertyRef Name="JuegoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UsuarioPuntaje">
-    <End Role="Usuario" Type="ModelosDB.Store.UsuarioSet" Multiplicity="1" />
-    <End Role="Puntaje" Type="ModelosDB.Store.PuntajeSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Puntaje">
-        <PropertyRef Name="UsuarioId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -171,30 +138,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UsuarioJugando">
-    <End Role="Usuario" Type="ModelosDB.Store.UsuarioSet" Multiplicity="1" />
-    <End Role="Jugando" Type="ModelosDB.Store.JugandoSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jugando">
-        <PropertyRef Name="Usuario_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="JuegoJugando">
-    <End Role="Juego" Type="ModelosDB.Store.JuegoSet" Multiplicity="1" />
-    <End Role="Jugando" Type="ModelosDB.Store.JugandoSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Juego">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jugando">
-        <PropertyRef Name="JuegoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -205,17 +148,12 @@
           <EntitySet Name="PuntajeSet" EntityType="ModelosDB.Puntaje" />
           <EntitySet Name="PreguntaSet" EntityType="ModelosDB.Pregunta" />
           <EntitySet Name="RespuestaSet" EntityType="ModelosDB.Respuesta" />
-          <EntitySet Name="JugandoSet" EntityType="ModelosDB.Jugando" />
           <AssociationSet Name="UsuarioJuego" Association="ModelosDB.UsuarioJuego">
             <End Role="Usuario" EntitySet="UsuarioSet" />
             <End Role="Juego" EntitySet="JuegoSet" />
           </AssociationSet>
           <AssociationSet Name="JuegoPuntaje" Association="ModelosDB.JuegoPuntaje">
             <End Role="Juego" EntitySet="JuegoSet" />
-            <End Role="Puntaje" EntitySet="PuntajeSet" />
-          </AssociationSet>
-          <AssociationSet Name="UsuarioPuntaje" Association="ModelosDB.UsuarioPuntaje">
-            <End Role="Usuario" EntitySet="UsuarioSet" />
             <End Role="Puntaje" EntitySet="PuntajeSet" />
           </AssociationSet>
           <AssociationSet Name="PreguntaRespuesta" Association="ModelosDB.PreguntaRespuesta">
@@ -226,15 +164,7 @@
             <End Role="Juego" EntitySet="JuegoSet" />
             <End Role="Pregunta" EntitySet="PreguntaSet" />
           </AssociationSet>
-          <AssociationSet Name="UsuarioJugando" Association="ModelosDB.UsuarioJugando">
-            <End Role="Usuario" EntitySet="UsuarioSet" />
-            <End Role="Jugando" EntitySet="JugandoSet" />
-          </AssociationSet>
-          <AssociationSet Name="JuegoJugando" Association="ModelosDB.JuegoJugando">
-            <End Role="Juego" EntitySet="JuegoSet" />
-            <End Role="Jugando" EntitySet="JugandoSet" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="Id" />
@@ -246,8 +176,6 @@
           <Property Name="Apellido" Type="String" Nullable="false" />
           <Property Name="FechaNac" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Juegos" Relationship="ModelosDB.UsuarioJuego" FromRole="Usuario" ToRole="Juego" />
-          <NavigationProperty Name="Puntajes" Relationship="ModelosDB.UsuarioPuntaje" FromRole="Usuario" ToRole="Puntaje" />
-          <NavigationProperty Name="Jugando" Relationship="ModelosDB.UsuarioJugando" FromRole="Usuario" ToRole="Jugando" />
         </EntityType>
         <EntityType Name="Juego">
           <Key>
@@ -267,7 +195,6 @@
           <Property Name="UsuarioId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Puntajes" Relationship="ModelosDB.JuegoPuntaje" FromRole="Juego" ToRole="Puntaje" />
           <NavigationProperty Name="Preguntas" Relationship="ModelosDB.JuegoPregunta" FromRole="Juego" ToRole="Pregunta" />
-          <NavigationProperty Name="Jugando" Relationship="ModelosDB.JuegoJugando" FromRole="Juego" ToRole="Jugando" />
           <Property Name="Creado" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
         </EntityType>
         <EntityType Name="Puntaje">
@@ -278,8 +205,7 @@
           <Property Name="Puntos" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Juego" Relationship="ModelosDB.JuegoPuntaje" FromRole="Puntaje" ToRole="Juego" />
           <Property Name="JuegoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="ModelosDB.UsuarioPuntaje" FromRole="Puntaje" ToRole="Usuario" />
-          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Pregunta">
           <Key>
@@ -309,15 +235,6 @@
           <NavigationProperty Name="Pregunta" Relationship="ModelosDB.PreguntaRespuesta" FromRole="Respuesta" ToRole="Pregunta" />
           <Property Name="PreguntaId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Jugando">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Usuario" Relationship="ModelosDB.UsuarioJugando" FromRole="Jugando" ToRole="Usuario" />
-          <NavigationProperty Name="Juego" Relationship="ModelosDB.JuegoJugando" FromRole="Jugando" ToRole="Juego" />
-          <Property Name="JuegoId" Type="Int32" Nullable="false" />
-        </EntityType>
         <Association Name="UsuarioJuego">
           <End Type="ModelosDB.Usuario" Role="Usuario" Multiplicity="1" />
           <End Type="ModelosDB.Juego" Role="Juego" Multiplicity="*" />
@@ -339,18 +256,6 @@
             </Principal>
             <Dependent Role="Puntaje">
               <PropertyRef Name="JuegoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UsuarioPuntaje">
-          <End Type="ModelosDB.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="ModelosDB.Puntaje" Role="Puntaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Puntaje">
-              <PropertyRef Name="UsuarioId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -378,23 +283,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UsuarioJugando">
-          <End Type="ModelosDB.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="ModelosDB.Jugando" Role="Jugando" Multiplicity="0..1" />
-        </Association>
-        <Association Name="JuegoJugando">
-          <End Type="ModelosDB.Juego" Role="Juego" Multiplicity="1" />
-          <End Type="ModelosDB.Jugando" Role="Jugando" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Juego">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Jugando">
-              <PropertyRef Name="JuegoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -436,7 +325,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Puntos" ColumnName="Puntos" />
           <ScalarProperty Name="JuegoId" ColumnName="JuegoId" />
-          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -467,22 +356,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="JugandoSet">
-      <EntityTypeMapping TypeName="IsTypeOf(ModelosDB.Jugando)">
-        <MappingFragment StoreEntitySet="JugandoSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="JuegoId" ColumnName="JuegoId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="UsuarioJugando" TypeName="ModelosDB.UsuarioJugando" StoreEntitySet="JugandoSet">
-      <EndProperty Name="Usuario">
-        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
-      </EndProperty>
-      <EndProperty Name="Jugando">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

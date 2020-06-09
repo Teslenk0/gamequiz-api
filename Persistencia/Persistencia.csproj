@@ -53,9 +53,6 @@
     <Compile Include="Database\Juego.cs">
       <DependentUpon>ModelosDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\Jugando.cs">
-      <DependentUpon>ModelosDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\ModelosDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

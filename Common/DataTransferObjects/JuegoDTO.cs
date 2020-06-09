@@ -14,7 +14,6 @@ namespace Common.DataTransferObjects
         {
             this.Puntajes = new HashSet<PuntajeDTO>();
             this.Preguntas = new HashSet<PreguntaDTO>();
-            this.Jugando = new HashSet<JugandoDTO>();
         }
 
         public int Id { get; set; }
@@ -36,13 +35,10 @@ namespace Common.DataTransferObjects
         [IgnoreDataMember]
         public UsuarioDTO Usuario { get; set; }
 
-
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<PuntajeDTO> Puntajes { get; set; }
 
         public virtual ICollection<PreguntaDTO> Preguntas { get; set; }
-
-        [JsonIgnore]
-        [IgnoreDataMember]
-        public virtual ICollection<JugandoDTO> Jugando { get; set; }
     }
 }

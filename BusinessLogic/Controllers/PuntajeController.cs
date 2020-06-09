@@ -25,9 +25,6 @@ namespace BusinessLogic.Controllers
 				cfg.CreateMap<JuegoDTO, Juego>();
 				cfg.CreateMap<Juego, JuegoDTO>();
 
-				cfg.CreateMap<JugandoDTO, Jugando>();
-				cfg.CreateMap<Jugando, JugandoDTO>();
-
 				cfg.CreateMap<PreguntaDTO, Pregunta>();
 				cfg.CreateMap<Pregunta, PreguntaDTO>();
 
@@ -43,24 +40,13 @@ namespace BusinessLogic.Controllers
 			_mapper = configuration.CreateMapper();
 		}
 
-		public PuntajeDTO GetByUsuarioAndJuego(int UsuarioId, int JuegoId)
-		{
-			using (ModelosDBContainer context = new ModelosDBContainer())
-			{
-				PuntajeRepository repositorio = new PuntajeRepository(context);
-				var entity = repositorio.Get(UsuarioId,JuegoId);
-				return this._mapper.Map<PuntajeDTO>(entity);
-			}
-		}
-
-		public HashSet<PuntajeDTO> GetAll()
+		public HashSet<PuntajeDTO> GetAll(int JuegoId)
 		{
 			HashSet<PuntajeDTO> puntajes = new HashSet<PuntajeDTO>();
-
 			using (ModelosDBContainer context = new ModelosDBContainer())
 			{
 				PuntajeRepository repositorio = new PuntajeRepository(context);
-				var entities = repositorio.GetAll();
+				var entities = repositorio.GetAll(JuegoId);
 
 				foreach (var entity in entities)
 				{
@@ -70,27 +56,15 @@ namespace BusinessLogic.Controllers
 			return puntajes;
 		}
 
-		public Object Create(PuntajeDTO puntaje)
+		public void Create(PuntajeDTO puntaje)
 		{
 			try
 			{
 				using (ModelosDBContainer context = new ModelosDBContainer())
 				{
 					PuntajeRepository repositorio = new PuntajeRepository(context);
-
-					if (repositorio.AnyByUsuarioAndJuego(puntaje.UsuarioId, puntaje.JuegoId))
-					{
-						Puntaje p = repositorio.Get(puntaje.UsuarioId, puntaje.JuegoId);
-						if (p.Puntos < puntaje.Puntos)
-							p.Puntos = puntaje.Puntos;
-					}
-					else
-					{
-						repositorio.Create(this._mapper.Map<Puntaje>(puntaje));
-					}
-					var pu = repositorio.Get(puntaje.UsuarioId, puntaje.JuegoId);
+					repositorio.Create(this._mapper.Map<Puntaje>(puntaje));
 					context.SaveChanges();
-					return pu;
 				}
 			}
 			catch (Exception ex)

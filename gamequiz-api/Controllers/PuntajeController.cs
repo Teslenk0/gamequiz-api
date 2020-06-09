@@ -9,31 +9,35 @@ using System.Web.Http.Cors;
 
 namespace gamequiz_api.Controllers
 {
-
-    [Authorize]
-    //[AllowAnonymous]
     public class PuntajeController : ApiController
     {
         // GET: api/Puntaje
-        public IEnumerable<string> Get()
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("api/Puntaje/ranking")]
+        public HashSet<PuntajeDTO> GetRanking(int juegoId)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Puntaje/5
-        public string Get(int id)
-        {
-            return "value";
+            try
+            {
+                BusinessLogic.Controllers.PuntajeController puntajeController = new BusinessLogic.Controllers.PuntajeController();
+                var lista = puntajeController.GetAll(juegoId);
+                return lista;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         // POST: api/Puntaje
+        [AllowAnonymous]
         public Object Post(PuntajeDTO puntaje)
         {
             try
             {
                 BusinessLogic.Controllers.PuntajeController puntajeController = new BusinessLogic.Controllers.PuntajeController();
-                var resp = puntajeController.Create(puntaje);
-                return new ResponseDTO(resp, "Se ha creado el puntaje correctamente.", true);
+                puntajeController.Create(puntaje);
+                return new ResponseDTO(HttpStatusCode.Created, "Se ha creado el puntaje correctamente.", true);
             }
             catch (Exception e)
             {

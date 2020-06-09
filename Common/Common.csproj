@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTransferObjects\JuegoDTO.cs" />
-    <Compile Include="DataTransferObjects\JugandoDTO.cs" />
     <Compile Include="DataTransferObjects\PreguntaDTO.cs" />
     <Compile Include="DataTransferObjects\PuntajeDTO.cs" />
     <Compile Include="DataTransferObjects\ResponseDTO.cs" />

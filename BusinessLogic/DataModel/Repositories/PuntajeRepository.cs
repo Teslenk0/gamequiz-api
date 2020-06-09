@@ -18,28 +18,16 @@ namespace BusinessLogic.DataModel.Repositories
 			this._context = context;
 		}
 
-		public Puntaje Get(int UsuarioId, int JuegoId)
+		public HashSet<Puntaje> GetAll(int juegoId)
 		{
-			var PuntajeEntity = this._context.PuntajeSet.Where(a => a.Usuario.Id == UsuarioId && a.Juego.Id == JuegoId).FirstOrDefault();
-			return PuntajeEntity;
-		}
-
-		public HashSet<Puntaje> GetAll()
-		{
-			var entitySet = this._context.PuntajeSet.Select(s => s).ToHashSet();
+			var entitySet = this._context.PuntajeSet.Where(s => s.JuegoId == juegoId).OrderByDescending(s => s.Puntos).Take(10).ToHashSet();
 			return entitySet;
 		}
 
-		public bool Any(int Id)
+		public Puntaje Get(int Id)
 		{
-			var exists = this._context.PuntajeSet.Any(s => s.Id == Id);
-			return exists;
-		}
-
-		public bool AnyByUsuarioAndJuego(int UsuarioId, int JuegoId)
-		{
-			var exists = this._context.PuntajeSet.Any(s => s.Usuario.Id == UsuarioId && s.Juego.Id == JuegoId);
-			return exists;
+			var PuntajeEntity = this._context.PuntajeSet.Where(a => a.Id == Id).FirstOrDefault();
+			return PuntajeEntity;
 		}
 
 		public void Create(Puntaje puntaje)

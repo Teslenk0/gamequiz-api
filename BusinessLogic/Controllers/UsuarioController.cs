@@ -24,9 +24,6 @@ namespace BusinessLogic.Controllers
                 cfg.CreateMap<JuegoDTO, Juego>();
                 cfg.CreateMap<Juego, JuegoDTO>();
 
-                cfg.CreateMap<JugandoDTO, Jugando>();
-                cfg.CreateMap<Jugando, JugandoDTO>();
-
                 cfg.CreateMap<PreguntaDTO, Pregunta>();
                 cfg.CreateMap<Pregunta, PreguntaDTO>();
 
