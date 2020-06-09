@@ -13,9 +13,7 @@ namespace gamequiz_api.Controllers
     {
         // GET: api/Puntaje
         [AllowAnonymous]
-        [HttpGet]
-        [Route("api/Puntaje/ranking")]
-        public HashSet<PuntajeDTO> GetRanking(int juegoId)
+        public HashSet<PuntajeDTO> Get(int juegoId)
         {
             try
             {

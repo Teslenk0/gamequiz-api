@@ -24,12 +24,6 @@ namespace BusinessLogic.DataModel.Repositories
 			return entitySet;
 		}
 
-		public Puntaje Get(int Id)
-		{
-			var PuntajeEntity = this._context.PuntajeSet.Where(a => a.Id == Id).FirstOrDefault();
-			return PuntajeEntity;
-		}
-
 		public void Create(Puntaje puntaje)
 		{
 			this._context.PuntajeSet.Add(puntaje);
